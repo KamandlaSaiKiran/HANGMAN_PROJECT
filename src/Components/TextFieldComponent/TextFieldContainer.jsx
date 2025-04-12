@@ -2,6 +2,7 @@ import { useState } from "react";
 import TextField from "./TextField";
 import StartGame from "../StartGame";
 
+
 function TextFieldContainer() {
     const [value, setValue] = useState(""); // ✅ Initialize with an empty string
     const [ButtonText,SetButtonText]=useState('password');
@@ -22,6 +23,16 @@ function TextFieldContainer() {
             const data=event.target.value;
             setHintValue(data)
     }
+    function checkValidation(event) {
+      
+        if (!value || !Hintvalue) {
+            event.preventDefault();
+            alert("Both the word and hint values are mandatory");
+            return;
+        }
+    
+        console.log("Validation passed!");
+    }
 
     return (
         <>
@@ -32,6 +43,7 @@ function TextFieldContainer() {
                 ButtonText={ButtonText}
                 onChangeHint={onChangeHint}
                 Hintvalue={Hintvalue}
+                checkValidation={checkValidation}
             />
            
         </>

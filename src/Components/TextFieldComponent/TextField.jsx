@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import StartGame from "../StartGame";
 
-function TextField({ onChange,onChangeButton,onChangeHint,ButtonText,Hintvalue}) {
+function TextField({value, onChange,onChangeButton,onChangeHint,ButtonText,Hintvalue,checkValues,checkValidation}) {
     console.log("onChange function in child:", onChange); // Debugging: Check if function is received
     console.log(onChangeHint);
     console.log(Hintvalue);
+    console.log(checkValues);
+    console.log("The value passed is " + value);
+   
     return (
 
         <>
@@ -14,7 +17,6 @@ function TextField({ onChange,onChangeButton,onChangeHint,ButtonText,Hintvalue})
             <input
                 className=" border-4 border-yellow-400 bg-white text-2xl transition-all text-red-600 hover:border border-yellow-800"
                 type={ButtonText}
-                // value={value}
                 onChange={onChange} // ✅ Ensure this is properly set
                 placeholder="Enter a word to start"
             />
@@ -29,9 +31,15 @@ function TextField({ onChange,onChangeButton,onChangeHint,ButtonText,Hintvalue})
                 onChange={onChangeHint} // ✅ Ensure this is properly set
                 placeholder="Enter the Hint to Guess"
             />
-             <button  
-            className="border border-solid text-black font-semibold px-1 py-1 rounded-md bg-orange-600">
-                <Link to ="/Start" state={{ hint: Hintvalue }}>Start the Game</Link>
+            <button 
+            onClick={checkValidation}
+           className="border border-solid text-black font-semibold px-1 py-1 rounded-md bg-orange-600"
+              >
+               {value && Hintvalue ? (
+               <Link to="/Start" state={{ hint: Hintvalue,word:value }}>Start the Game</Link>
+                 ) : (
+                         "Start the Game"
+                )}
             </button> 
             </div>
             
