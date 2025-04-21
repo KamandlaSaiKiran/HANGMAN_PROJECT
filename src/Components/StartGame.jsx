@@ -24,6 +24,11 @@ function StartGame(){
         alert("Game is Over");
         navigate('/');
        }
+       const isWordGuessed = word.toUpperCase().split('').every(letter => usedLetters.includes(letter));
+       if (isWordGuessed) {
+         alert("You have won");
+         navigate('/');
+       }
      };
  
  
